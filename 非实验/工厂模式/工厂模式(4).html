@@ -1,0 +1,503 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,0); }
+.s1 { color: rgb(0,128,0); font-weight: bold; }
+.s2 { color: rgb(0,0,0); }
+.s3 { color: rgb(0,0,128); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-style: italic; }
+.s5 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+main.cpp</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">#include</span><span class="s1">&lt;iostream&gt;</span><span class="s2"> 
+</span><span class="s0">#include</span><span class="s1">&lt;algorithm&gt;</span><span class="s2"> 
+</span><span class="s0">#include</span><span class="s1">&lt;cstdio&gt;</span><span class="s2"> 
+</span><span class="s3">using namespace </span><span class="s2">std; 
+ 
+</span><span class="s4">/* 
+原料: 
+Dough 
+Sauce 
+Cheese 
+Veggies 
+Pepperoni 
+Clams 
+*/</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Dough 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Dough(){} 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">ThickCrustDough:</span><span class="s3">virtual public </span><span class="s2">Dough { 
+</span><span class="s3">public</span><span class="s2">: 
+    ThickCrustDough() {} 
+    </span><span class="s3">void </span><span class="s2">show() { printf(</span><span class="s1">&quot; ThickCrustDough,&quot;</span><span class="s2">); } 
+}; 
+</span><span class="s3">class </span><span class="s2">ThinCrustDough:</span><span class="s3">public </span><span class="s2">Dough 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    ThinCrustDough(){  } 
+    </span><span class="s3">void </span><span class="s2">show() { printf(</span><span class="s1">&quot; ThinCrustDough,&quot;</span><span class="s2">); } 
+}; 
+</span><span class="s4">//***********************************</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Sauce 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Sauce(){} 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">PlumTomatoSause: </span><span class="s3">public </span><span class="s2">Sauce 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    PlumTomatoSause(){ } 
+    </span><span class="s3">void </span><span class="s2">show() { printf(</span><span class="s1">&quot; PlumTomatoSause,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">MarinaraSause:</span><span class="s3">public </span><span class="s2">Sauce 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    MarinaraSause(){ } 
+    </span><span class="s3">void </span><span class="s2">show() { printf(</span><span class="s1">&quot; MarinaraSause,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s4">//***********************************</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Cheese 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Cheese(){} 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">MozzarellaCheese:</span><span class="s3">public </span><span class="s2">Cheese 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    MozzarellaCheese(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; MarinaraSause,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">RegginaoCheese:</span><span class="s3">public </span><span class="s2">Cheese 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    RegginaoCheese(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; MarinaraSause,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s4">//***********************************</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Veggies(){} 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">Garlic:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Garlic(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; Garlic,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">Onion:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Onion(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; Onion,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">Mushroom:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Mushroom(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; Mushroom,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">RedPepper:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    RedPepper(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; RedPepper,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">BlackOlives:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    BlackOlives(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){  printf(</span><span class="s1">&quot; BlackOlives,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">Spinach:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Spinach(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; Spinach,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">Eggplant:</span><span class="s3">public </span><span class="s2">Veggies 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Eggplant(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; Eggplant,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s4">//***********************************</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Pepperoni 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Pepperoni(){} 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+ 
+}; 
+</span><span class="s3">class </span><span class="s2">SlicedPepperoni:</span><span class="s3">public </span><span class="s2">Pepperoni 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    SlicedPepperoni(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; SlicedPepperoni,&quot;</span><span class="s2">);} 
+}; 
+ 
+</span><span class="s4">//***********************************</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Clams 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Clams(){} 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">FrozenClams:</span><span class="s3">public </span><span class="s2">Clams 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    FrozenClams(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; FrozenClams,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s3">class </span><span class="s2">FreshClams:</span><span class="s3">public </span><span class="s2">Clams 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    FreshClams(){}; 
+    </span><span class="s3">void </span><span class="s2">show(){ printf(</span><span class="s1">&quot; FreshClams,&quot;</span><span class="s2">);} 
+}; 
+</span><span class="s4">//************************************************************************</span><span class="s2"> 
+</span><span class="s4">/* 
+原料工厂: 
+NYPizzaIngerdientFactory 
+ChicagoPizzaIngerdientFactory 
+ */</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">PizzaIngerdientFactory{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">virtual </span><span class="s2">Dough* createDough() = </span><span class="s5">0</span><span class="s2">; 
+    </span><span class="s3">virtual </span><span class="s2">Sauce* createSauce() = </span><span class="s5">0</span><span class="s2">; 
+    </span><span class="s3">virtual </span><span class="s2">Cheese* createCheese() = </span><span class="s5">0</span><span class="s2">; 
+    </span><span class="s3">virtual </span><span class="s2">Veggies** createVeggies() = </span><span class="s5">0</span><span class="s2">; 
+    </span><span class="s3">virtual </span><span class="s2">Pepperoni* createPepperoni() = </span><span class="s5">0</span><span class="s2">; 
+    </span><span class="s3">virtual </span><span class="s2">Clams* createClams() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+ 
+</span><span class="s3">class </span><span class="s2">NYPizzaIngerdientFactory:</span><span class="s3">public </span><span class="s2">PizzaIngerdientFactory 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Dough* createDough(){ 
+        </span><span class="s3">return new </span><span class="s2">ThickCrustDough(); 
+    } 
+    Sauce* createSauce(){ 
+        </span><span class="s3">return new </span><span class="s2">MarinaraSause(); 
+    } 
+    Cheese* createCheese(){ 
+        </span><span class="s3">return new </span><span class="s2">RegginaoCheese(); 
+    } 
+    Veggies** createVeggies(){ 
+        Veggies **veggies = </span><span class="s3">new </span><span class="s2">Veggies* [</span><span class="s5">4</span><span class="s2">]; 
+        veggies[</span><span class="s5">0</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">Garlic(); 
+        veggies[</span><span class="s5">1</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">Onion(); 
+        veggies[</span><span class="s5">2</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">Mushroom(); 
+        veggies[</span><span class="s5">3</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">RedPepper(); 
+        veggies[</span><span class="s5">4</span><span class="s2">] = NULL; 
+        </span><span class="s3">return </span><span class="s2">veggies; 
+    } 
+    Pepperoni* createPepperoni(){ 
+        </span><span class="s3">return new </span><span class="s2">SlicedPepperoni(); 
+    } 
+    Clams* createClams(){ 
+        </span><span class="s3">return new </span><span class="s2">FreshClams(); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">ChicagoPizzaIngerdientFactory:</span><span class="s3">public </span><span class="s2">PizzaIngerdientFactory 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Dough* createDough(){ 
+        </span><span class="s3">return new </span><span class="s2">ThickCrustDough(); 
+    } 
+    Sauce* createSauce(){ 
+        </span><span class="s3">return new </span><span class="s2">PlumTomatoSause(); 
+    } 
+    Cheese* createCheese(){ 
+        </span><span class="s3">return new </span><span class="s2">MozzarellaCheese(); 
+    } 
+    Veggies** createVeggies(){ 
+        Veggies **veggies = </span><span class="s3">new </span><span class="s2">Veggies* [</span><span class="s5">3</span><span class="s2">]; 
+        veggies[</span><span class="s5">0</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">BlackOlives(); 
+        veggies[</span><span class="s5">1</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">Spinach(); 
+        veggies[</span><span class="s5">2</span><span class="s2">] = </span><span class="s3">new </span><span class="s2">Eggplant(); 
+        veggies[</span><span class="s5">3</span><span class="s2">] = NULL; 
+        </span><span class="s3">return </span><span class="s2">veggies; 
+    } 
+    Pepperoni* createPepperoni(){ 
+        </span><span class="s3">return new </span><span class="s2">SlicedPepperoni(); 
+    } 
+    Clams* createClams(){ 
+        </span><span class="s3">return new </span><span class="s2">FrozenClams(); 
+    } 
+}; 
+</span><span class="s4">//************************************************************************</span><span class="s2"> 
+</span><span class="s4">/* 
+披萨: 
+ChessPizza 
+ClamPizza 
+VeggiePizza 
+PepperoniPizza 
+*/</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Pizza 
+ 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    string name_; 
+    Dough *dough_; 
+    Sauce *sauce_; 
+    Cheese *cheese_; 
+    Veggies **veggies_; 
+    Pepperoni *pepperoni_; 
+    Clams *clams_; 
+</span><span class="s3">public</span><span class="s2">: 
+    Pizza(){} 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">bake(){ 
+        printf(</span><span class="s1">&quot;Bake for 25 minutes at 350.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+    </span><span class="s3">void </span><span class="s2">cut(){ 
+        printf(</span><span class="s1">&quot;Cutting the pizza into diagonal slices.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+    </span><span class="s3">void </span><span class="s2">box(){ 
+        printf(</span><span class="s1">&quot;Place pizza in offical PizzaStore box.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+    </span><span class="s3">void </span><span class="s2">name(string s){name_ = s;} 
+    string name() </span><span class="s3">const</span><span class="s2">{ </span><span class="s3">return </span><span class="s2">name_;} 
+    </span><span class="s3">virtual void </span><span class="s2">prepare() = </span><span class="s5">0</span><span class="s2">; 
+    </span><span class="s3">virtual void </span><span class="s2">show() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">ChessPizza:</span><span class="s3">public </span><span class="s2">Pizza 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    PizzaIngerdientFactory *ingredientFactory_; 
+</span><span class="s3">public</span><span class="s2">: 
+    ChessPizza(PizzaIngerdientFactory *i):ingredientFactory_(i){} 
+    </span><span class="s3">void </span><span class="s2">prepare() 
+    { 
+        cout &lt;&lt;</span><span class="s1">&quot;Preparing: &quot; </span><span class="s2">&lt;&lt; name() &lt;&lt; endl; 
+        dough_ = ingredientFactory_-&gt;createDough(); 
+        sauce_ = ingredientFactory_-&gt;createSauce(); 
+        cheese_ = ingredientFactory_-&gt;createCheese(); 
+    } 
+    </span><span class="s3">void </span><span class="s2">show(){ 
+        cout &lt;&lt; </span><span class="s1">&quot;Our Ingredient: &quot; </span><span class="s2">; 
+        dough_-&gt;show(); 
+        sauce_-&gt;show(); 
+        cheese_-&gt;show(); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">ClamPizza:</span><span class="s3">public </span><span class="s2">Pizza 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    PizzaIngerdientFactory *ingredientFactory_; 
+</span><span class="s3">public</span><span class="s2">: 
+    ClamPizza(PizzaIngerdientFactory *i):ingredientFactory_(i){} 
+    </span><span class="s3">void </span><span class="s2">prepare() 
+    { 
+        cout &lt;&lt;</span><span class="s1">&quot;Preparing: &quot; </span><span class="s2">&lt;&lt; name() &lt;&lt; endl; 
+        dough_ = ingredientFactory_-&gt;createDough(); 
+        sauce_ = ingredientFactory_-&gt;createSauce(); 
+        cheese_ = ingredientFactory_-&gt;createCheese(); 
+        clams_ = ingredientFactory_-&gt;createClams(); 
+    } 
+    </span><span class="s3">void </span><span class="s2">show(){ 
+        cout &lt;&lt; </span><span class="s1">&quot;Our Ingredient: &quot; </span><span class="s2">; 
+        dough_-&gt;show(); 
+        sauce_-&gt;show(); 
+        cheese_-&gt;show(); 
+        clams_-&gt;show(); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">VeggiePizza:</span><span class="s3">public </span><span class="s2">Pizza 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    PizzaIngerdientFactory *ingredientFactory_; 
+</span><span class="s3">public</span><span class="s2">: 
+    VeggiePizza(PizzaIngerdientFactory *i):ingredientFactory_(i){} 
+    </span><span class="s3">void </span><span class="s2">prepare() 
+    { 
+        cout &lt;&lt;</span><span class="s1">&quot;Preparing: &quot; </span><span class="s2">&lt;&lt; name() &lt;&lt; endl; 
+        dough_ = ingredientFactory_-&gt;createDough(); 
+        sauce_ = ingredientFactory_-&gt;createSauce(); 
+        cheese_ = ingredientFactory_-&gt;createCheese(); 
+        veggies_ = ingredientFactory_-&gt;createVeggies(); 
+    } 
+    </span><span class="s3">void </span><span class="s2">show(){ 
+        cout &lt;&lt; </span><span class="s1">&quot;Our Ingredient: &quot; </span><span class="s2">; 
+        dough_-&gt;show(); 
+        sauce_-&gt;show(); 
+        cheese_-&gt;show(); 
+        </span><span class="s3">int </span><span class="s2">pos = </span><span class="s5">0</span><span class="s2">; 
+        </span><span class="s3">while</span><span class="s2">(veggies_[pos] != NULL) 
+        { 
+            veggies_[pos++]-&gt;show(); 
+        } 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">PepperoniPizza:</span><span class="s3">public </span><span class="s2">Pizza 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    PizzaIngerdientFactory *ingredientFactory_; 
+</span><span class="s3">public</span><span class="s2">: 
+    PepperoniPizza(PizzaIngerdientFactory *i):ingredientFactory_(i){} 
+    </span><span class="s3">void </span><span class="s2">prepare() 
+    { 
+        cout &lt;&lt;</span><span class="s1">&quot;Preparing: &quot; </span><span class="s2">&lt;&lt; name() &lt;&lt; endl; 
+        dough_ = ingredientFactory_-&gt;createDough(); 
+        sauce_ = ingredientFactory_-&gt;createSauce(); 
+        cheese_ = ingredientFactory_-&gt;createCheese(); 
+        pepperoni_ = ingredientFactory_-&gt;createPepperoni(); 
+    } 
+    </span><span class="s3">void </span><span class="s2">show(){ 
+        cout &lt;&lt; </span><span class="s1">&quot;Our Ingredient: &quot; </span><span class="s2">; 
+        dough_-&gt;show(); 
+        sauce_-&gt;show(); 
+        cheese_-&gt;show(); 
+        pepperoni_-&gt;show(); 
+    } 
+}; 
+</span><span class="s4">//************************************************************************</span><span class="s2"> 
+</span><span class="s4">/* 
+披萨店: 
+NYPizzaStore 
+ChicagoPizzaStore 
+ */</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">PizzaStore 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    Pizza *pizza_; 
+    PizzaIngerdientFactory *ingerdientFactory_; 
+</span><span class="s3">public</span><span class="s2">: 
+    Pizza* pizza () </span><span class="s3">const </span><span class="s2">{ </span><span class="s3">return </span><span class="s2">pizza_;} 
+    PizzaStore(){} 
+    </span><span class="s3">void </span><span class="s2">orderPizza(string s) 
+    { 
+        pizza_ = createPizza(s); 
+        pizza_-&gt;bake(); 
+        pizza_-&gt;cut(); 
+        pizza_-&gt;box(); 
+    } 
+    </span><span class="s3">virtual </span><span class="s2">Pizza* createPizza(string s) = </span><span class="s5">0</span><span class="s2">; 
+}; 
+ 
+</span><span class="s3">class </span><span class="s2">NYPizzaStore:</span><span class="s3">public </span><span class="s2">PizzaStore 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Pizza* createPizza(string s) 
+    { 
+        Pizza *pizza = NULL; 
+        ingerdientFactory_ = </span><span class="s3">new </span><span class="s2">NYPizzaIngerdientFactory(); 
+        </span><span class="s3">if</span><span class="s2">(s == </span><span class="s1">&quot;chess&quot;</span><span class="s2">){ 
+            pizza = </span><span class="s3">new </span><span class="s2">ChessPizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;New York Style Chess Pizza&quot;</span><span class="s2">); 
+        } 
+        </span><span class="s3">else if</span><span class="s2">(s == </span><span class="s1">&quot;veggie&quot;</span><span class="s2">) 
+        { 
+            pizza = </span><span class="s3">new </span><span class="s2">VeggiePizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;New York Style Veggie Pizza&quot;</span><span class="s2">); 
+        }</span><span class="s3">else if</span><span class="s2">(s == </span><span class="s1">&quot;clam&quot;</span><span class="s2">){ 
+            pizza = </span><span class="s3">new </span><span class="s2">ClamPizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;New York Style Clam Pizza&quot;</span><span class="s2">); 
+        }</span><span class="s3">else </span><span class="s4">//if( s ==  &quot;pepperoni&quot;)</span><span class="s2"> 
+        { 
+            pizza = </span><span class="s3">new </span><span class="s2">PepperoniPizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;New York Style Pepperoni Pizza&quot;</span><span class="s2">); 
+        } 
+        </span><span class="s3">return </span><span class="s2">pizza; 
+    } 
+}; 
+ 
+</span><span class="s3">class </span><span class="s2">ChicagoPizzaStore:</span><span class="s3">public </span><span class="s2">PizzaStore 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    Pizza* createPizza(string s) 
+    { 
+        Pizza *pizza = NULL; 
+        ingerdientFactory_ = </span><span class="s3">new </span><span class="s2">ChicagoPizzaIngerdientFactory(); 
+        </span><span class="s3">if</span><span class="s2">(s == </span><span class="s1">&quot;chess&quot;</span><span class="s2">){ 
+            pizza = </span><span class="s3">new </span><span class="s2">ChessPizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;Chicago Style Chess Pizza&quot;</span><span class="s2">); 
+        } 
+        </span><span class="s3">else if</span><span class="s2">(s == </span><span class="s1">&quot;veggie&quot;</span><span class="s2">) 
+        { 
+            pizza = </span><span class="s3">new </span><span class="s2">VeggiePizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;Chicago Style Veggie Pizza&quot;</span><span class="s2">); 
+        }</span><span class="s3">else if</span><span class="s2">(s == </span><span class="s1">&quot;clam&quot;</span><span class="s2">){ 
+            pizza = </span><span class="s3">new </span><span class="s2">ClamPizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;Chicago Style Clam Pizza&quot;</span><span class="s2">); 
+        }</span><span class="s3">else </span><span class="s4">//if( s ==  &quot;pepperoni&quot;)</span><span class="s2"> 
+        { 
+            pizza = </span><span class="s3">new </span><span class="s2">PepperoniPizza(ingerdientFactory_); 
+            pizza-&gt;name(</span><span class="s1">&quot;Chicago Style Pepperoni Pizza&quot;</span><span class="s2">); 
+        } 
+        </span><span class="s3">return </span><span class="s2">pizza; 
+    } 
+}; 
+</span><span class="s4">//************************************************************************</span><span class="s2"> 
+ 
+</span><span class="s3">int </span><span class="s2">main() 
+{ 
+    printf(</span><span class="s1">&quot;Waiter: Welcome to our PizzaStore!</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    printf(</span><span class="s1">&quot;Waiter: Here is the menu,sir/madam.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    printf(</span><span class="s1">&quot;Waiter: May I take your order now?</span><span class="s3">\n\n</span><span class="s1">&quot;</span><span class="s2">); 
+ 
+ 
+    PizzaStore *pizzaStore; 
+    </span><span class="s4">///The First Costomer</span><span class="s2"> 
+    printf(</span><span class="s1">&quot;Costomer: I need a New York Pizza.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    printf(</span><span class="s1">&quot;Costomer: I am eager to taste the chess pizza.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    cout &lt;&lt; </span><span class="s1">&quot;Our process: </span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">; 
+    pizzaStore = </span><span class="s3">new </span><span class="s2">NYPizzaStore(); 
+    pizzaStore-&gt;orderPizza(</span><span class="s1">&quot;chess&quot;</span><span class="s2">); 
+    pizzaStore-&gt;pizza()-&gt;prepare(); 
+    pizzaStore-&gt;pizza()-&gt;show(); 
+    cout &lt;&lt; endl&lt;&lt;endl; 
+    </span><span class="s4">///The Second Costomer</span><span class="s2"> 
+    printf(</span><span class="s1">&quot;Costomer: I need a Chicago Pizza.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    printf(</span><span class="s1">&quot;Costomer: I am eager to taste the veggie pizza.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    cout &lt;&lt; </span><span class="s1">&quot;Our process: </span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">; 
+    pizzaStore = </span><span class="s3">new </span><span class="s2">ChicagoPizzaStore(); 
+    pizzaStore-&gt;orderPizza(</span><span class="s1">&quot;veggie&quot;</span><span class="s2">); 
+    pizzaStore-&gt;pizza()-&gt;prepare(); 
+    pizzaStore-&gt;pizza()-&gt;show(); 
+ 
+    </span><span class="s3">return </span><span class="s5">0</span><span class="s2">; 
+} 
+</span><span class="s4">/* 
+输出结果： 
+Waiter: Welcome to our PizzaStore! 
+Waiter: Here is the menu,sir/madam. 
+Waiter: May I take your order now? 
+ 
+Costomer: I need a New York Pizza. 
+Costomer: I am eager to taste the chess pizza. 
+Our process: 
+Bake for 25 minutes at 350. 
+Cutting the pizza into diagonal slices. 
+Place pizza in offical PizzaStore box. 
+Preparing: New York Style Chess Pizza 
+Our Ingredient:  ThickCrustDough, MarinaraSause, MarinaraSause, 
+ 
+Costomer: I need a Chicago Pizza. 
+Costomer: I am eager to taste the veggie pizza. 
+Our process: 
+Bake for 25 minutes at 350. 
+Cutting the pizza into diagonal slices. 
+Place pizza in offical PizzaStore box. 
+Preparing: Chicago Style Veggie Pizza 
+Our Ingredient:  ThickCrustDough, PlumTomatoSause, MarinaraSause, BlackOlives, Spinach, Eggplant, 
+*/</span></pre>
+</body>
+</html>

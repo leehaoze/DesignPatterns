@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,0); }
+.s1 { color: rgb(0,128,0); font-weight: bold; }
+.s2 { color: rgb(0,0,0); }
+.s3 { color: rgb(0,0,128); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-style: italic; }
+.s5 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+main.cpp</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">#include</span><span class="s1"> &lt;iostream&gt;</span><span class="s2"> 
+</span><span class="s0">#include</span><span class="s1"> &lt;cstdio&gt;</span><span class="s2"> 
+</span><span class="s0">#include</span><span class="s1"> &lt;algorithm&gt;</span><span class="s2"> 
+</span><span class="s3">using namespace </span><span class="s2">std; 
+ 
+</span><span class="s4">/* 
+父类: 
+FlyBehavior 
+子类: 
+FlyWithWings 
+FlyNoWay 
+FlyRocketPowered 
+*/</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">FlyBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">virtual void </span><span class="s2">fly() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">FlyWithWings:</span><span class="s3">public </span><span class="s2">FlyBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">fly() 
+    { 
+        printf(</span><span class="s1">&quot;I am flying.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">FlyNoWay:</span><span class="s3">public </span><span class="s2">FlyBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">fly() 
+    { 
+        printf(</span><span class="s1">&quot;I can not fly.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">FlyRocketPowered:</span><span class="s3">public </span><span class="s2">FlyBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">fly() { 
+        printf(</span><span class="s1">&quot;I am flying with a rocket.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s4">//*****************************************************</span><span class="s2"> 
+</span><span class="s4">/* 
+父类: 
+QuackBehavior 
+子类: 
+Quack 
+MuteQuack 
+Squeak 
+*/</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">QuackBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">virtual void </span><span class="s2">quack() = </span><span class="s5">0</span><span class="s2">; 
+}; 
+</span><span class="s3">class </span><span class="s2">Quack:</span><span class="s3">public </span><span class="s2">QuackBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">quack() 
+    { 
+        printf(</span><span class="s1">&quot;Quack</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+ 
+</span><span class="s3">class </span><span class="s2">MuteQuack:</span><span class="s3">public </span><span class="s2">QuackBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">quack() 
+    { 
+        printf(</span><span class="s1">&quot;&lt;&lt; Silence &gt;&gt;</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">Squeak:</span><span class="s3">public </span><span class="s2">QuackBehavior 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">quack() 
+    { 
+        printf(</span><span class="s1">&quot;Squeak</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s4">//*****************************************************</span><span class="s2"> 
+</span><span class="s4">/* 
+父类: 
+Duck 
+子类: 
+ModelDuck 
+MallardDuck 
+RedHeadDuck 
+RubberDuck 
+DecoyDuck 
+*/</span><span class="s2"> 
+</span><span class="s3">class </span><span class="s2">Duck 
+{ 
+</span><span class="s3">protected</span><span class="s2">: 
+    FlyBehavior* flyBehavior_; 
+    QuackBehavior* quackBehavior_; 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">swim() 
+    { 
+        printf(</span><span class="s1">&quot;All ducks float, even decoys!</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+    </span><span class="s3">void </span><span class="s2">performQuack() 
+    { 
+        quackBehavior_-&gt;quack(); 
+    } 
+    </span><span class="s3">void </span><span class="s2">performFly() 
+    { 
+        flyBehavior_-&gt;fly(); 
+    } 
+    </span><span class="s3">virtual void </span><span class="s2">display() = </span><span class="s5">0</span><span class="s2">; 
+</span><span class="s3">public</span><span class="s2">: 
+    </span><span class="s3">void </span><span class="s2">setFlyBehavior(FlyBehavior *f){ 
+        flyBehavior_ = f; 
+    } 
+    </span><span class="s3">void </span><span class="s2">setQuackBehavior(QuackBehavior *q){ 
+        quackBehavior_ = q; 
+    } 
+}; 
+ 
+</span><span class="s3">class </span><span class="s2">ModelDuck: </span><span class="s3">public </span><span class="s2">Duck 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    ModelDuck() { 
+        flyBehavior_ = </span><span class="s3">new </span><span class="s2">FlyNoWay(); 
+        quackBehavior_ = </span><span class="s3">new </span><span class="s2">Quack(); 
+    } 
+ 
+    </span><span class="s3">void </span><span class="s2">display() { 
+        printf(</span><span class="s1">&quot;I am a Model duck.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+ 
+</span><span class="s3">class </span><span class="s2">MallardDuck: </span><span class="s3">public </span><span class="s2">Duck 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    MallardDuck() { 
+        flyBehavior_ = </span><span class="s3">new </span><span class="s2">FlyWithWings(); 
+        quackBehavior_ = </span><span class="s3">new </span><span class="s2">Quack(); 
+    } 
+ 
+    </span><span class="s3">void </span><span class="s2">display() { 
+        printf(</span><span class="s1">&quot;I am a real Mallard duck.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">RedHeadDuck: </span><span class="s3">public </span><span class="s2">Duck 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    RedHeadDuck() { 
+        flyBehavior_ = </span><span class="s3">new </span><span class="s2">FlyWithWings(); 
+        quackBehavior_ = </span><span class="s3">new </span><span class="s2">Quack(); 
+    } 
+ 
+    </span><span class="s3">void </span><span class="s2">display() { 
+        printf(</span><span class="s1">&quot;I am a RedHead duck.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">RubberDuck: </span><span class="s3">public </span><span class="s2">Duck 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    RubberDuck() { 
+        flyBehavior_ = </span><span class="s3">new </span><span class="s2">FlyNoWay(); 
+        quackBehavior_ = </span><span class="s3">new </span><span class="s2">MuteQuack(); 
+    } 
+ 
+    </span><span class="s3">void </span><span class="s2">display() { 
+        printf(</span><span class="s1">&quot;I am Rubber duck.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s3">class </span><span class="s2">DecoyDuck: </span><span class="s3">public </span><span class="s2">Duck 
+{ 
+</span><span class="s3">public</span><span class="s2">: 
+    DecoyDuck() { 
+        flyBehavior_ = </span><span class="s3">new </span><span class="s2">FlyNoWay(); 
+        quackBehavior_ = </span><span class="s3">new </span><span class="s2">Squeak(); 
+    } 
+ 
+    </span><span class="s3">void </span><span class="s2">display() { 
+        printf(</span><span class="s1">&quot;I am a Decoy duck.</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+    } 
+}; 
+</span><span class="s4">//*****************************************************</span><span class="s2"> 
+ 
+</span><span class="s3">int </span><span class="s2">main() 
+{ 
+    </span><span class="s4">//第一只鸭子</span><span class="s2"> 
+    Duck *mallord = </span><span class="s3">new </span><span class="s2">MallardDuck(); 
+    mallord-&gt;display(); 
+    mallord-&gt;performFly(); 
+    mallord-&gt;setFlyBehavior(</span><span class="s3">new </span><span class="s2">FlyRocketPowered()); 
+    mallord-&gt;performFly(); 
+ 
+    printf(</span><span class="s1">&quot;</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s2">); 
+ 
+    </span><span class="s4">//第二只鸭子</span><span class="s2"> 
+    Duck *rubberDuck = </span><span class="s3">new </span><span class="s2">RubberDuck(); 
+    rubberDuck-&gt;display(); 
+    rubberDuck-&gt;performQuack(); 
+    rubberDuck-&gt;setQuackBehavior(</span><span class="s3">new </span><span class="s2">Squeak()); 
+    rubberDuck-&gt;performQuack(); 
+    </span><span class="s3">return </span><span class="s5">0</span><span class="s2">; 
+} 
+</span><span class="s4">/* 
+输出结果: 
+I am a real Mallard duck. 
+I am flying. 
+I am flying with a rocket. 
+ 
+I am Rubber duck. 
+&lt;&lt; Silence &gt;&gt; 
+Squeak 
+*/</span></pre>
+</body>
+</html>
